@@ -9,9 +9,12 @@
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
 	import { io } from 'socket.io-client';
 	import weatherData from '$lib/objects/weather-data';
+	import { fade } from 'svelte/transition';
 
 	// @ts-ignore
 	const endpoint = 'https://skodje.org/verdata/customclientraw.txt';
+
+	let loaded = false;
 
 	let weather = {
 		Flemsoy: { ...weatherData },
@@ -36,6 +39,7 @@
 		// 	console.log(data);
 		// });
 		socket.on('file-content', (data) => {
+			loaded = true;
 			for (const location in data) {
 				for (const key in data[location]) {
 					// @ts-ignore
@@ -52,78 +56,80 @@
 </svelte:head>
 
 <section>
-	<div class="weather-card mt-4">
-		<div class="parameter-box">
-			<div class="parameter">
-				<i class="fas fa-thermometer-half" />
-				<label>Temperatur:</label>
-				<value>
-					<span id="flem-temp">{weather.Skodje.temp}</span>
-					°C</value
-				>
+	{#if loaded}
+		<div in:fade={{ duration: 500 }} class="weather-card mt-4">
+			<div class="parameter-box">
+				<div class="parameter">
+					<i class="fas fa-thermometer-half" />
+					<label>Temperatur:</label>
+					<value>
+						<span id="flem-temp">{weather.Skodje.temp}</span>
+						°C</value
+					>
+				</div>
+				<div class="parameter">
+					<i class="fas fa-chart-bar" />
+					<label>Barometer:</label>
+					<value>
+						<span id="flem-pressure">{weather.Skodje.press}</span>
+						hPa</value
+					>
+				</div>
 			</div>
-			<div class="parameter">
-				<i class="fas fa-chart-bar" />
-				<label>Barometer:</label>
-				<value>
-					<span id="flem-pressure">{weather.Skodje.press}</span>
-					hPa</value
-				>
+			<div class="parameter-box">
+				<div class="parameter">
+					<i class="fas fa-tint" />
+					<label>Luftfuktighet:</label>
+					<value>
+						<span id="flem-humidity">{weather.Skodje.hum}</span>
+						%</value
+					>
+				</div>
+				<div class="parameter">
+					<i class="fas fa-cloud-showers-heavy" />
+					<label>Nedbør nå:</label>
+					<value>
+						<span id="flem-rain">{weather.Skodje.rfall}</span>
+						mm/t</value
+					>
+				</div>
+				<div class="parameter">
+					<i class="fas fa-cloud" />
+					<label>Regn totalt i dag:</label>
+					<value>
+						<span id="flem-total-rain">Usikker på unit</span>
+						mm</value
+					>
+				</div>
+			</div>
+			<div class="parameter-box">
+				<div class="parameter">
+					<i class="fas fa-wind" />
+					<label>Vindhastighet (middelvind):</label>
+					<value>
+						<span id="flem-wind-speed">Usikker på unit</span>
+						m/s</value
+					>
+				</div>
+				<div class="parameter">
+					<i class="fas fa-wind" />
+					<label>Vindhastighet (sanntid):</label>
+					<value>
+						<span id="flem-wind-speed-now">{weather.Skodje.wspeed}</span>
+						m/s</value
+					>
+				</div>
+				<div class="parameter">
+					<i class="fas fa-wind" />
+					<label>Høyeste vindkast i dag:</label>
+					<value>
+						<span id="flem-wind-gust">{weather.Skodje.wgust}</span>
+						m/s</value
+					>
+				</div>
 			</div>
 		</div>
-		<div class="parameter-box">
-			<div class="parameter">
-				<i class="fas fa-tint" />
-				<label>Luftfuktighet:</label>
-				<value>
-					<span id="flem-humidity">{weather.Skodje.hum}</span>
-					%</value
-				>
-			</div>
-			<div class="parameter">
-				<i class="fas fa-cloud-showers-heavy" />
-				<label>Nedbør nå:</label>
-				<value>
-					<span id="flem-rain">{weather.Skodje.rfall}</span>
-					mm/t</value
-				>
-			</div>
-			<div class="parameter">
-				<i class="fas fa-cloud" />
-				<label>Regn totalt i dag:</label>
-				<value>
-					<span id="flem-total-rain">Usikker på unit</span>
-					mm</value
-				>
-			</div>
-		</div>
-		<div class="parameter-box">
-			<div class="parameter">
-				<i class="fas fa-wind" />
-				<label>Vindhastighet (middelvind):</label>
-				<value>
-					<span id="flem-wind-speed">Usikker på unit</span>
-					m/s</value
-				>
-			</div>
-			<div class="parameter">
-				<i class="fas fa-wind" />
-				<label>Vindhastighet (sanntid):</label>
-				<value>
-					<span id="flem-wind-speed-now">{weather.Skodje.wspeed}</span>
-					m/s</value
-				>
-			</div>
-			<div class="parameter">
-				<i class="fas fa-wind" />
-				<label>Høyeste vindkast i dag:</label>
-				<value>
-					<span id="flem-wind-gust">{weather.Skodje.wgust}</span>
-					m/s</value
-				>
-			</div>
-		</div>
-	</div>
+	{/if}
 
 	<!-- <Counter /> -->
 </section>
