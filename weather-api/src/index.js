@@ -5,6 +5,8 @@ const { join } = require('path');
 const axios = require('axios');
 const cors = require('cors');
 
+const { urls: weatherStations } = require('./weather-stations.js');
+
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {
@@ -19,15 +21,12 @@ app.get('/', (req, res) => {
     res.sendFile(join(__dirname, 'index.html'));
 });
 
-const urls = {
-    'Skodje': 'https://skodjesbf.com/verdata/customclientraw.txt',
-    'Flemsoy': 'https://skodje.org/verdata/flem/customclientraw.txt'
-};
+
 
 const data = {};
 
 async function fetchData() {
-    for (const [name, url] of Object.entries(urls)) {
+    for (const [name, url] of Object.entries(weatherStations)) {
         try {
             const response = await axios.get(url);
             const newData = response.data;
