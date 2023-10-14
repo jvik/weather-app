@@ -36,9 +36,7 @@ async function fetchData() {
                 // If there's no existing data, emit everything
                 data[name] = newData;
                 io.sockets.emit('file-content', { [name]: newData });
-                console.log("here0")
             } else {
-                console.log("here1")
                 // Compare properties and emit only the changed values
                 const changedValues = {};
 
