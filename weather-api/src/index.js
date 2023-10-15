@@ -21,8 +21,6 @@ app.get('/', (req, res) => {
     res.sendFile(join(__dirname, 'index.html'));
 });
 
-
-
 const data = {};
 
 async function fetchData() {
@@ -65,7 +63,7 @@ io.on('connection', (socket) => {
 // Periodically update the file content and broadcast changes to connected clients
 setInterval(() => {
     fetchData();
-}, 5000); // Update every 5 seconds
+}, 1000); // Update every 5 seconds
 
 server.listen(3000, () => {
     console.log('server running at http://localhost:3000');

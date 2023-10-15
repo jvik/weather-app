@@ -18,7 +18,8 @@
 
 	let weather = {
 		Flemsoy: { ...weatherData },
-		Skodje: { ...weatherData }
+		Skodje: { ...weatherData },
+		Hahjem: { ...weatherData }
 	};
 
 	let socket;
@@ -89,7 +90,7 @@
 					<i class="fas fa-cloud-showers-heavy" />
 					<label>Nedbør nå:</label>
 					<value>
-						<span id="flem-rain">{weather.Skodje.rfall}</span>
+						<span id="flem-rain">{weather.Skodje.rrate}</span>
 						mm/t</value
 					>
 				</div>
@@ -97,7 +98,7 @@
 					<i class="fas fa-cloud" />
 					<label>Regn totalt i dag:</label>
 					<value>
-						<span id="flem-total-rain">Usikker på unit</span>
+						<span id="flem-total-rain">{weather.Skodje.rfall}</span>
 						mm</value
 					>
 				</div>
@@ -107,7 +108,7 @@
 					<i class="fas fa-wind" />
 					<label>Vindhastighet (middelvind):</label>
 					<value>
-						<span id="flem-wind-speed">Usikker på unit</span>
+						<span id="flem-wind-speed">{weather.Skodje.wlatest}</span>
 						m/s</value
 					>
 				</div>
