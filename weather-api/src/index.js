@@ -19,7 +19,7 @@ const io = new Server(server, {
 app.use(cors());
 app.get('/', (req, res) => {
     // res.sendFile(join(__dirname, 'index.html'));
-    res.send('Hello World');
+    res.send('Hello snorre');
 });
 
 const data = {};
