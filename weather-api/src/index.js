@@ -18,7 +18,8 @@ const io = new Server(server, {
 
 app.use(cors());
 app.get('/', (req, res) => {
-    res.sendFile(join(__dirname, 'index.html'));
+    // res.sendFile(join(__dirname, 'index.html'));
+    res.send('Hello World');
 });
 
 const data = {};
@@ -65,6 +66,13 @@ setInterval(() => {
     fetchData();
 }, 1000); // Update every 5 seconds
 
-server.listen(3000, () => {
-    console.log('server running at http://localhost:3000');
+const port = process.env.PORT || 3000;
+
+server.listen(port, () => {
+    console.log(`server running at http://localhost:${port}`);
+});
+
+app.use('/confirm', function (req, res, next) {
+    console.log(req);
+    next();
 });
