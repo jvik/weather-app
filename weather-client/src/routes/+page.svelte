@@ -26,7 +26,7 @@
 
 	onMount(() => {
 		// Connect to the Socket.IO server
-		socket = io('http://localhost:3000', { autoConnect: false }); // Change to the server's address
+		socket = io('http://web-ext.lan.skodje.org:3000', { autoConnect: false }); // Change to the server's address
 		socket.connect();
 
 		socket.on('connect_error', (err) => {
