@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Build the Svelte project
-RUN npm run build
+RUN npm run build:production
 
 # Use the official Nginx image for serving the SSR output
 FROM nginx:alpine
