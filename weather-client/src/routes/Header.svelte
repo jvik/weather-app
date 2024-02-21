@@ -20,7 +20,10 @@
 				<a href="/">Skodje</a>
 			</li>
 			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href="/flemsoy">Flemsøy</a>
+				<a href="/about">Info</a>
+			</li>
+			<li aria-current={$page.url.pathname === '/searchdate' ? 'page' : undefined}>
+				<a href="/searchdate">Datosøk</a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">
@@ -29,9 +32,6 @@
 	</nav>
 
 	<div class="corner">
-		<a href="https://github.com/sveltejs/kit">
-			<img src={github} alt="GitHub" />
-		</a>
 	</div>
 </header>
 
