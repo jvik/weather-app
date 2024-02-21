@@ -52,8 +52,9 @@
 </script>
 
 <svelte:head>
-	<title>Skodje</title>
+	<title>Været på Sunnmøre</title>
 	<meta name="description" content="Svelte demo app" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </svelte:head>
 
 <section>
@@ -61,73 +62,134 @@
 		<div in:fade={{ duration: 500 }} class="weather-card mt-4">
 			<div class="parameter-box">
 				<div class="parameter">
-					<i class="fas fa-thermometer-half" />
-					<label>Temperatur:</label>
-					<value>
-						<span id="flem-temp">{weather.Skodje.temp}</span>
-						°C</value
-					>
+					<div class="icon-and-label">
+						<i class="fas fa-thermometer-half"></i>
+						<label>Temperatur:</label>
+					</div>
+					<p>
+						<span class="location">Skodje:</span>
+						<span class="temperature"><b><value><span id="flem-temp">{weather.Skodje.temp}</span> °C</value></b></span><br>
+						<span class="location">Håhjem:</span>
+						<span class="temperature"><b><value><span id="flem-temp">{weather.Hahjem.temp}</span> °C</value></b></span><br>
+						<span class="location">Longva:</span>
+						<span class="temperature"><b><value><span id="flem-temp">{weather.Flemsoy.temp}</span> °C</value></b></span>								
+					</p>
 				</div>
+			
+<p>
 				<div class="parameter">
-					<i class="fas fa-chart-bar" />
-					<label>Barometer:</label>
-					<value>
-						<span id="flem-pressure">{weather.Skodje.press}</span>
-						hPa</value
-					>
+					<div class="icon-and-label">
+						<i class="fas fa-chart-bar"></i>
+						<label>Barometer:</label>
+					</div>
+					<p>
+						<span class="location">Skodje:</span>
+						<span class="temperature"><b><value><span id="flem-bar">{weather.Skodje.press}</span> hPa</value></b></span><br>
+						<span class="location">Håhjem:</span>
+						<span class="temperature"><b><value><span id="flem-temp">{weather.Hahjem.press}</span> hPa</value></b></span><br>
+						<span class="location">Longva:</span>
+						<span class="temperature"><b><value><span id="flem-temp">{weather.Flemsoy.press}</span> hPa</value></b></span>								
+					</p>
 				</div>
-			</div>
-			<div class="parameter-box">
-				<div class="parameter">
-					<i class="fas fa-tint" />
-					<label>Luftfuktighet:</label>
-					<value>
-						<span id="flem-humidity">{weather.Skodje.hum}</span>
-						%</value
-					>
-				</div>
-				<div class="parameter">
-					<i class="fas fa-cloud-showers-heavy" />
-					<label>Nedbør nå:</label>
-					<value>
-						<span id="flem-rain">{weather.Skodje.rrate}</span>
-						mm/t</value
-					>
-				</div>
-				<div class="parameter">
-					<i class="fas fa-cloud" />
-					<label>Regn totalt i dag:</label>
-					<value>
-						<span id="flem-total-rain">{weather.Skodje.rfall}</span>
-						mm</value
-					>
-				</div>
-			</div>
-			<div class="parameter-box">
-				<div class="parameter">
-					<i class="fas fa-wind" />
-					<label>Vindhastighet (middelvind):</label>
-					<value>
-						<span id="flem-wind-speed">{weather.Skodje.wlatest}</span>
-						m/s</value
-					>
-				</div>
-				<div class="parameter">
-					<i class="fas fa-wind" />
-					<label>Vindhastighet (sanntid):</label>
-					<value>
-						<span id="flem-wind-speed-now">{weather.Skodje.wspeed}</span>
-						m/s</value
-					>
-				</div>
-				<div class="parameter">
-					<i class="fas fa-wind" />
-					<label>Høyeste vindkast i dag:</label>
-					<value>
-						<span id="flem-wind-gust">{weather.Skodje.wgust}</span>
-						m/s</value
-					>
-				</div>
+
+				<p>
+					<div class="parameter">
+						<div class="icon-and-label">
+							<i class="fas fa-tint"></i>
+							<label>Luftfuktighet:</label>
+						</div>
+						<p>
+							<span class="location">Skodje:</span>
+							<span class="temperature"><b><value><span id="flem-temp">{weather.Skodje.hum}</span> %</value></b></span><br>
+							<span class="location">Håhjem:</span>
+							<span class="temperature"><b><value><span id="flem-temp">{weather.Hahjem.hum}</span> %</value></b></span><br>
+							<span class="location">Longva:</span>
+							<span class="temperature"><b><value><span id="flem-temp">{weather.Flemsoy.hum}</span> %</value></b></span>								
+						</p>
+					</div>
+
+
+					<p>
+						<div class="parameter">
+							<div class="icon-and-label">
+								<i class="fas fa-cloud-showers-heavy"></i>
+								<label>Nedbør nå:</label>
+							</div>
+							<p>
+								<span class="location">Skodje:</span>
+								<span class="temperature"><b><value><span id="flem-temp">{weather.Skodje.rrate}</span> mm/t</value></b></span><br>
+								<span class="location">Håhjem:</span>
+								<span class="temperature"><b><value><span id="flem-temp">{weather.Hahjem.rrate}</span> mm/t</value></b></span><br>
+								<span class="location">Longva:</span>
+								<span class="temperature"><b><value><span id="flem-temp">{weather.Flemsoy.rrate}</span> mm/t</value></b></span>								
+							</p>
+						</div>
+
+						<p>
+							<div class="parameter">
+								<div class="icon-and-label">
+									<i class="fas fa-cloud"></i>
+									<label>Nedbør totalt i dag:</label>
+								</div>
+								<p>
+									<span class="location">Skodje:</span>
+									<span class="temperature"><b><value><span id="flem-temp">{weather.Skodje.rfall}</span> mm</value></b></span><br>
+									<span class="location">Håhjem:</span>
+									<span class="temperature"><b><value><span id="flem-temp">{weather.Hahjem.rfall}</span> mm</value></b></span><br>
+									<span class="location">Longva:</span>
+									<span class="temperature"><b><value><span id="flem-temp">{weather.Flemsoy.rfall}</span> mm</value></b></span>								
+								</p>
+							</div>
+
+
+						<p>
+							<div class="parameter">
+								<div class="icon-and-label">
+									<i class="fas fa-wind"></i>
+									<label>Vind nå (middelvind):</label>
+								</div>
+								<p>
+									<span class="location">Skodje:</span>
+									<span class="temperature"><b><value><span id="flem-temp">{weather.Skodje.wspeed}</span> m/s</value></b></span><br>
+									<span class="location">Håhjem:</span>
+									<span class="temperature"><b><value><span id="flem-temp">{weather.Hahjem.wspeed}</span> m/s</value></b></span><br>
+									<span class="location">Longva:</span>
+									<span class="temperature"><b><value><span id="flem-temp">{weather.Flemsoy.wspeed}</span> m/s</value></b></span>								
+								</p>
+							</div>
+		
+							<p>
+								<div class="parameter">
+									<div class="icon-and-label">
+										<i class="fas fa-wind"></i>
+										<label>Vind nå (vindkast):</label>
+									</div>
+									<p>
+										<span class="location">Skodje:</span>
+										<span class="temperature"><b><value><span id="flem-temp">{weather.Skodje.wlatest}</span> m/s</value></b></span><br>
+										<span class="location">Håhjem:</span>
+										<span class="temperature"><b><value><span id="flem-temp">{weather.Hahjem.wlatest}</span> m/s</value></b></span><br>
+										<span class="location">Longva:</span>
+										<span class="temperature"><b><value><span id="flem-temp">{weather.Flemsoy.wlatest}</span> m/s</value></b></span>								
+									</p>
+								</div>
+
+								<p>
+									<div class="parameter">
+										<div class="icon-and-label">
+											<i class="fas fa-wind"></i>
+											<label>Høyeste vindkast i dag:</label>
+										</div>
+										<p>
+											<span class="location">Skodje:</span>
+											<span class="temperature"><b><value><span id="flem-temp">{weather.Skodje.wgustTM}</span> m/s</value></b></span><br>
+											<span class="location">Håhjem:</span>
+											<span class="temperature"><b><value><span id="flem-temp">{weather.Hahjem.wgustTM}</span> m/s</value></b></span><br>
+											<span class="location">Longva:</span>
+											<span class="temperature"><b><value><span id="flem-temp">{weather.Flemsoy.wgustTM}</span> m/s</value></b></span>								
+										</p>
+									</div>
+
 			</div>
 		</div>
 	{/if}
@@ -163,4 +225,31 @@
 		top: 0;
 		display: block;
 	}
+
+.parameter {
+    display: flex;
+    align-items: left; 
+    flex-direction: column; 
+}
+
+.parameter p {
+    margin: 0; 
+    text-align: left; 
+}
+
+.icon-and-label {
+    display: flex;
+    align-items: center; 
+    margin-bottom: 10px; 
+}
+
+.icon-and-label i {
+    margin-right: 10px; 
+}
+
+.location {
+    width: 80px; 
+    display: inline-block;
+}
+
 </style>
