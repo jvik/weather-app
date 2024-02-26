@@ -11,9 +11,6 @@
 	import weatherData from '$lib/objects/weather-data';
 	import { fade } from 'svelte/transition';
 
-	// @ts-ignore
-	const endpoint = 'https://skodje.org/verdata/customclientraw.txt';
-
 	let loaded = false;
 
 	let weather = {
@@ -26,7 +23,7 @@
 
 	onMount(() => {
 		// Connect to the Socket.IO server
-		socket = io(import.meta.env.VITE_API_URL, { autoConnect: false }); // Change to the server's address
+		socket = io(import.meta.env.VITE_API_URL, { autoConnect: false });
 		socket.connect();
 
 		socket.on('connect_error', (err) => {
@@ -113,66 +110,33 @@
 						<div class="parameter">
 							<div class="icon-and-label">
 								<i class="fas fa-cloud-showers-heavy"></i>
-								<label>Nedbør nå:</label>
+								<label>Nedbør nå (totalt i dag):</label>
 							</div>
 							<p>
 								<span class="location">Skodje:</span>
-								<span class="temperature"><b><value><span id="flem-temp">{weather.Skodje.rrate}</span> mm/t</value></b></span><br>
+								<span class="temperature"><b><value><span id="flem-temp">{weather.Skodje.rrate}</span> mm/t ({weather.Skodje.rfall} mm ) </value></b></span><br>
 								<span class="location">Håhjem:</span>
-								<span class="temperature"><b><value><span id="flem-temp">{weather.Hahjem.rrate}</span> mm/t</value></b></span><br>
+								<span class="temperature"><b><value><span id="flem-temp">{weather.Hahjem.rrate}</span> mm/t ({weather.Hahjem.rfall} mm )</value></b></span><br>
 								<span class="location">Longva:</span>
-								<span class="temperature"><b><value><span id="flem-temp">{weather.Flemsoy.rrate}</span> mm/t</value></b></span>								
+								<span class="temperature"><b><value><span id="flem-temp">{weather.Flemsoy.rrate}</span> mm/t ({weather.Flemsoy.rfall} mm )</value></b></span>								
 							</p>
 						</div>
 
 						<p>
 							<div class="parameter">
 								<div class="icon-and-label">
-									<i class="fas fa-cloud"></i>
-									<label>Nedbør totalt i dag:</label>
-								</div>
-								<p>
-									<span class="location">Skodje:</span>
-									<span class="temperature"><b><value><span id="flem-temp">{weather.Skodje.rfall}</span> mm</value></b></span><br>
-									<span class="location">Håhjem:</span>
-									<span class="temperature"><b><value><span id="flem-temp">{weather.Hahjem.rfall}</span> mm</value></b></span><br>
-									<span class="location">Longva:</span>
-									<span class="temperature"><b><value><span id="flem-temp">{weather.Flemsoy.rfall}</span> mm</value></b></span>								
-								</p>
-							</div>
-
-
-						<p>
-							<div class="parameter">
-								<div class="icon-and-label">
 									<i class="fas fa-wind"></i>
-									<label>Vind nå (middelvind):</label>
+									<label>Vind nå i middelvind (sanntid vindkast):</label>
 								</div>
 								<p>
 									<span class="location">Skodje:</span>
-									<span class="temperature"><b><value><span id="flem-temp">{weather.Skodje.wspeed}</span> m/s</value></b></span><br>
+									<span class="temperature"><b><value><span id="flem-temp">{weather.Skodje.wspeed}</span> ( {weather.Skodje.wlatest} ) m/s</value></b></span><br>
 									<span class="location">Håhjem:</span>
-									<span class="temperature"><b><value><span id="flem-temp">{weather.Hahjem.wspeed}</span> m/s</value></b></span><br>
+									<span class="temperature"><b><value><span id="flem-temp">{weather.Hahjem.wspeed}</span> ( {weather.Hahjem.wlatest} ) m/s</value></b></span><br>
 									<span class="location">Longva:</span>
-									<span class="temperature"><b><value><span id="flem-temp">{weather.Flemsoy.wspeed}</span> m/s</value></b></span>								
+									<span class="temperature"><b><value><span id="flem-temp">{weather.Flemsoy.wspeed}</span> ( {weather.Flemsoy.wlatest} ) m/s</value></b></span>								
 								</p>
 							</div>
-		
-							<p>
-								<div class="parameter">
-									<div class="icon-and-label">
-										<i class="fas fa-wind"></i>
-										<label>Vind nå (vindkast):</label>
-									</div>
-									<p>
-										<span class="location">Skodje:</span>
-										<span class="temperature"><b><value><span id="flem-temp">{weather.Skodje.wlatest}</span> m/s</value></b></span><br>
-										<span class="location">Håhjem:</span>
-										<span class="temperature"><b><value><span id="flem-temp">{weather.Hahjem.wlatest}</span> m/s</value></b></span><br>
-										<span class="location">Longva:</span>
-										<span class="temperature"><b><value><span id="flem-temp">{weather.Flemsoy.wlatest}</span> m/s</value></b></span>								
-									</p>
-								</div>
 
 								<p>
 									<div class="parameter">
